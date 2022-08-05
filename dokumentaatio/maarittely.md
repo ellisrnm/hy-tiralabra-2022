@@ -1,6 +1,6 @@
 ## Määrittelydokumentti
 
-Aihe: Halvimman reitin valitseminen verkossa kahden pisteen väliltä mahdollisimman tehokkaasti
+Aihe: RSA-salaus
 
 Käytettävä ohjelmointikieli: Python (Huom! Myös vertaisarviointi ainoastaan Python)
 
@@ -10,4 +10,4 @@ Projektin kieli: suomi
 
 ### Aiheen kuvaus
 
-Ohjelman tarkoituksena on valita reitti paikkakunnalta A paikkakunnalle B julkisella kulkuvälineellä siten, että reitin lopullinen hinta olisi mahdollisimman edullinen. 
+Ohjelman tarkoituksena on salata lyhyitä viestejä RSA-salauksella itse generoiduilla avaimilla.
