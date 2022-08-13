@@ -1,5 +1,7 @@
 # Tiralabra loppukesä 2022
 
+![Github Actions](https://github.com/ellisrnm/hy-tiralabra-2022/workflows/CI/badge.svg)
+
 Tämä on Helsingin yliopiston kurssin _Aineopintojen harjoitustyö: Tietorakenteet ja algoritmit_ harjoitustyön palautusrepositorio.
 
 ## Viikkoraportit
