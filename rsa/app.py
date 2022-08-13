@@ -25,7 +25,7 @@ class RsaApp:
             if command == "0":
                 break
 
-            elif command == "1":
+            if command == "1":
                 self._generate_keys()
 
             elif command == "2":
