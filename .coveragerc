@@ -1,0 +1,3 @@
+[run]
+source = rsa
+omit = rsa/**/__init__.py,rsa/tests/**,rsa/__main__.py,rsa/app.py
