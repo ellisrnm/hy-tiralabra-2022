@@ -5,10 +5,10 @@ from message import Message
 
 
 def main():
-    io = ConsoleIO()
+    consoleio = ConsoleIO()
     keyprocessing = Key()
     messageprocessing = Message()
-    app = RsaApp(io, keyprocessing, messageprocessing)
+    app = RsaApp(consoleio, keyprocessing, messageprocessing)
     app.run()
 
 if __name__ == '__main__':

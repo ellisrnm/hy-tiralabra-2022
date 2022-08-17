@@ -10,9 +10,12 @@ class Key:
     def __init__(self):
         """
         Luokan konstruktori
-        """
 
-    def generate_prime_candidate(self, bits: int):
+        Luo valmiin listan alkuluvuista, jotka ovat pienempiä kuin 5000.
+        """
+        self.primes_list = self._sieve_of_eratosthenes(5000)
+
+    def _generate_prime_candidate(self, bits: int):
         """
         Palauttaa n-bitin mittaisen suuren satunnaisen luvun. Suuri luku valitaan
         siten, että ensimmäisen bitin tulee olla 1 ja luvun tulee olla pariton.
@@ -28,7 +31,7 @@ class Key:
             candidate = random.randrange(2**(bits-1)+1, 2**bits-1)
         return candidate
 
-    def sieve_of_eratosthenes(self, max_value: int):
+    def _sieve_of_eratosthenes(self, max_value: int):
         """
         Palauttaa listan niistä alkuluvuista, jotka ovat pienempiä tai yhtäsuuria kuin max_value.
         Määrittää alkuluvut käyttäen Eratostheneen seulaa.
@@ -48,7 +51,7 @@ class Key:
             i += 1
         return [i for i, x in enumerate(primes) if x]
 
-    def low_level_primality_test(self, prime_candidate: int, max_value: int=5000):
+    def _low_level_primality_test(self, prime_candidate: int, max_value: int=5000):
         """
         Nopea alkulukutesti, jossa valittu luku jaetaan muilla alkuluvuilla
         jaollisuuden tarkistamiksi. Jos valittu luku on jaollinen testatuilla
@@ -63,13 +66,16 @@ class Key:
             True, jos luku ei ole jaollinen testatuilla alkuluvuilla
             False, jos luku on jaollinen testatuilla alkuluvuilla
         """
-        primes_list = self.sieve_of_eratosthenes(max_value)
+        if max_value == 5000:
+            primes_list = self.primes_list
+        else:
+            primes_list = self._sieve_of_eratosthenes(max_value)
         for div in primes_list:
             if prime_candidate % div == 0 and div**2 <= prime_candidate:
                 return False
         return True
 
-    def miller_rabin_round(self, prime_candidate: int, even_comp: int, divs: int):
+    def _miller_rabin_round(self, prime_candidate: int, even_comp: int, divs: int):
         """
         Määrittää Mille-Rabin-algoritmin mukaisen yhden kierroksen avulla, onko tietty
         luku todennäköisesti alkuluku. Testattavaksi valittu luku annetaan muodossa
@@ -96,7 +102,7 @@ class Key:
                 return False
         return False
 
-    def miller_rabin_primality_test(self, prime_candidate: int, rounds: int=5):
+    def _miller_rabin_primality_test(self, prime_candidate: int, rounds: int=5):
         """
         Määrittää Mille-Rabin-algoritmin mukaan onko tietty luku todennäköisesti alkuluku.
         Testikierroksia voidaan suorittaa useampia.
@@ -115,11 +121,11 @@ class Key:
             even_comp >>= 1
             divs += 1
         for _ in range(rounds):
-            if not self.miller_rabin_round(prime_candidate, even_comp, divs):
+            if not self._miller_rabin_round(prime_candidate, even_comp, divs):
                 return False
         return True
 
-    def generate_prime(self, bits):
+    def _generate_prime(self, bits):
         """
         Generoi satunnaisia lukuja ja testaa onko luku alkuluku niin kauan, että todennäköinen
         alkuluku löytyy. Palauttaa n-bitin mittaisen satunnaisen (todennäköisen) alkuluvun.
@@ -131,12 +137,12 @@ class Key:
             Todennäköinen alkuluku
         """
         while True:
-            prime_candidate = self.generate_prime_candidate(bits)
-            if self.low_level_primality_test(prime_candidate):
-                if self.miller_rabin_primality_test(prime_candidate):
+            prime_candidate = self._generate_prime_candidate(bits)
+            if self._low_level_primality_test(prime_candidate):
+                if self._miller_rabin_primality_test(prime_candidate):
                     return prime_candidate
 
-    def generate_primes(self, bits: int=1024, no_primes: int=2):
+    def _generate_primes(self, bits: int=1024, no_primes: int=2):
         """
         Palauttaa listan, jossa on n-bitin mittaisia satunnaisia (todennäköisiä)
         alkulukuja m kappaletta.
@@ -150,10 +156,10 @@ class Key:
         """
         primes = []
         for _ in range(no_primes):
-            primes.append(self.generate_prime(bits))
+            primes.append(self._generate_prime(bits))
         return primes
 
-    def get_greatest_common_divisor(self, a_value, b_value):
+    def _get_greatest_common_divisor(self, a_value, b_value):
         """
         Selvittää lukujen a ja b suurimman yhteisen tekijän käyttäen
         laajennettua Ekleideen algoritmia
@@ -166,10 +172,10 @@ class Key:
         """
         if a_value == 0:
             return b_value, 0, 1
-        gcd, x_value, y_value = self.get_greatest_common_divisor(b_value % a_value, a_value)
+        gcd, x_value, y_value = self._get_greatest_common_divisor(b_value % a_value, a_value)
         return gcd, y_value - (b_value // a_value) * x_value, x_value
 
-    def generate_keys(self):
+    def _generate_keys(self):
         """
         Generoi RSA-avainparin. Palauttaa julkisen ja salaisen avaimen tarvittavat osat.
 
@@ -178,20 +184,27 @@ class Key:
             Avainpari (d,n) on salainen avain
             Avainpari (e,n) on julkinen avain
         """
-        p_prime, q_prime = self.generate_primes()
+        p_prime, q_prime = self._generate_primes()
         while p_prime == q_prime:
-            p_prime, q_prime = self.generate_primes()
+            p_prime, q_prime = self._generate_primes()
         n_value = p_prime * q_prime
         e_value = 65537
         phi_n = (p_prime - 1) * (q_prime - 1)
-        gcd, x_value, _ = self.get_greatest_common_divisor(e_value, phi_n)
+        gcd, x_value, _ = self._get_greatest_common_divisor(e_value, phi_n)
         if gcd != 1:
             return None
         d_value = x_value
         return d_value, e_value, n_value
 
-    def generate_key(self):
+    def get_new_keys(self):
         """
-        Keskeneräinen
+        Palauttaa uuden salausavainparin.
+
+        Returns:
+            Julkisen avaimen muodossa (e, N)
+            Yksityisen avaimen muodossa (d, N)
         """
-        return 'ABC'
+        d_value, e_value, n_value = self._generate_keys()
+        pub_key = (e_value, n_value)
+        priv_key = (d_value, n_value)
+        return pub_key, priv_key
