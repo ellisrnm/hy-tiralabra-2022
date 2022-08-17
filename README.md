@@ -10,3 +10,4 @@ Tämä on Helsingin yliopiston kurssin _Aineopintojen harjoitustyö: Tietorakent
 - [Viikko 1](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti1.md)
 - [Viikko 3](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti3.md)
 - [Viikko 4](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti4.md)
+- [Viikko 5](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti5.md)

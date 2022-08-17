@@ -28,4 +28,10 @@ Käynnistä ohjelma käyttämällä seuraavaa komentoa:
 
 ### Ohjelman toiminnallisuudet
 
-Tulossa
+Ohjelmalla on kolme erilaista toimintoa: salausavaimien luominen, viestin salaaminen sekä salatun viestin purkaminen. Toiminto valitaan komentorivillä antamalla sovellukselle syötteenä komentoa vastaava luku ohjeistuksen mukaan.
+
+Valitsemalla salausavaimien luomisen ohjelma generoi uuden salausavainparin ja palauttaa syötteenä sekä yksityisen avaimen että julkisen avaimen osat. Nämä käyttäjän tulisi ottaa talteen.
+
+Valitsemalla viestin salaamisen käyttäjän tulee antaa ensin syötteenä se viesti, jonka käyttäjä haluaa salata. Sen jälkeen käyttäjän tulee syöttää ohjelmalle viestin vastaanottajan julkisen avaimen osat e ja n. Ohjelma tulostaa komentoriville salatun viestin.
+
+Valitsemalla viestin purkamisen käyttäjän tulee antaa syötteenä se viesti, joka on salattu käyttäen vastaanottajan julkista avainta. Sen jälkeen käyttäjän tulee syöttää ohjelmalle viestin vastaanottajan yksityisen avaimen osat d ja n. Ohjelma tulostaa komentoriville puretun viestin.

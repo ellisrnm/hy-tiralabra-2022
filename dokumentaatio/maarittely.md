@@ -10,4 +10,4 @@ Projektin kieli: suomi
 
 ### Aiheen kuvaus
 
-Ohjelman tarkoituksena on salata lyhyitä viestejä RSA-salauksella itse generoiduilla avaimilla.
+Ohjelman tarkoituksena on salata ja purkaa lyhyitä viestejä RSA-salauksella itse generoiduilla avaimilla.
