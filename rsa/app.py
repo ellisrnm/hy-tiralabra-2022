@@ -1,3 +1,5 @@
+"""Sovelluksen toteutus"""
+
 commands= {
     "0" : "Lopeta",
     "1" : "Luo avaimet",
@@ -6,12 +8,18 @@ commands= {
 }
 
 class RsaApp:
+    """
+    Luokka vastaa sovelluksen toiminnasta
+    """
     def __init__(self, console_io, keyprocessing, messageprocessing):
         self._console_io = console_io
         self._keys = keyprocessing
         self._messages = messageprocessing
 
     def run(self):
+        """
+        Käynnistää ohjelman ja vastaa sovelluksen toiminnoista kunnes käyttäjä lopettaa ohjelman
+        """
         self._console_io.write("RSA-sovellus")
         self._print_instructions()
 
