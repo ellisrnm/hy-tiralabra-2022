@@ -1,3 +1,7 @@
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
+
 from app import RsaApp
 from console_io import ConsoleIO
 from key import Key

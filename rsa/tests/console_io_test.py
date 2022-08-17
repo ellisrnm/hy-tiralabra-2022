@@ -1,3 +1,8 @@
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
+# pylint: disable=protected-access
+
 import unittest
 from unittest.mock import patch
 from console_io import ConsoleIO
