@@ -159,7 +159,7 @@ class Key:
             primes.append(self._generate_prime(bits))
         return primes
 
-    def _get_greatest_common_divisor(self, a_value, b_value):
+    def _get_greatest_common_divisor(self, a_value: int, b_value: int):
         """
         Selvittää lukujen a ja b suurimman yhteisen tekijän käyttäen
         laajennettua Ekleideen algoritmia
@@ -175,9 +175,12 @@ class Key:
         gcd, x_value, y_value = self._get_greatest_common_divisor(b_value % a_value, a_value)
         return gcd, y_value - (b_value // a_value) * x_value, x_value
 
-    def _generate_keys(self):
+    def _generate_keys(self, e_value: int=65537):
         """
         Generoi RSA-avainparin. Palauttaa julkisen ja salaisen avaimen tarvittavat osat.
+
+        Args:
+            e_value (int, optional): eksponentti e, oletusarvo 65537
 
         Returns:
             Luvut d, e, n
@@ -188,7 +191,6 @@ class Key:
         while p_prime == q_prime:
             p_prime, q_prime = self._generate_primes()
         n_value = p_prime * q_prime
-        e_value = 65537
         phi_n = (p_prime - 1) * (q_prime - 1)
         gcd, x_value, _ = self._get_greatest_common_divisor(e_value, phi_n)
         if gcd != 1:
