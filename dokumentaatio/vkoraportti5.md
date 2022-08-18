@@ -8,7 +8,7 @@
 - Pylintin lisäys CI-putkeen
 - Toteutus- ja testausdokumentaatiota aloitettu sekä lisätty muuta dokumentaatiota
 
-Viikolla 5 projektiin käytetty yhteensä aikaa 28 tuntia. Ohjelman ydintoiminnallisuuksien tekemiseen käytin yhteensä 21 tuntia, testaukseen 4 tuntia sekä dokumentaatioon ja muuhun koodin pieneen muokkaukseen n. 3 tuntia.
+Viikolla 5 projektiin käytetty yhteensä aikaa 30 tuntia. Ohjelman ydintoiminnallisuuksien tekemiseen käytin yhteensä 21 tuntia, testaukseen 4 tuntia sekä dokumentaatioon ja muuhun koodin pieneen muokkaukseen n. 3 tuntia. Vertaisarvioinnin tekemiseen käytin 2 tuntia.
 
 Tällä viikolla olen toteuttanut kaikki sovelluksen ydintoiminnallisuudet ja olen oppinut paljon RSA:n toteutuksesta. Tein paljon ydintoiminnallisuuksia kerralla ja yksikkötestejä vasta jälkikäteen, vaikka niitä olisi ollut kannattavampaa toteuttaa ohjelman toiminnallisuuksien kanssa samaan aikaan ohjelman toiminnan takaamiseksi. Minulla on toiminnasta vielä muutamia kysymyksiä avoinna ja algoritmin toiminta tulee vielä tarkistaa. Tällä hetkellä ohjelma ei ole käyttäjän kannalta kovin helppokäyttöinen, joten tähän voisi myös vielä panostaa.
 
