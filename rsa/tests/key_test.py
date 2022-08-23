@@ -46,12 +46,12 @@ class TestKey(unittest.TestCase):
     def test_generate_keys(self):
         with patch.object(Key, '_generate_primes') as mock_method:
             mock_method.return_value = [3, 11]
-            result = self._keys._generate_keys(e_value=3)
+            result = self._keys._generate_keys(pub_exp=3)
             self.assertEqual((7,3,33), result)
 
     def test_get_new_keys(self):
         with patch.object(Key, '_generate_keys') as mock_method:
             mock_method.return_value = [1, 2, 3]
             result = self._keys.get_new_keys()
-            self.assertEqual((2,3), result[0])
+            self.assertEqual("2,3", result[0])
             self.assertEqual((1,3), result[1])

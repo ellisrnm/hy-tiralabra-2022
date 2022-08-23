@@ -102,14 +102,14 @@ class Key:
                 return False
         return False
 
-    def _miller_rabin_primality_test(self, prime_candidate: int, rounds: int=5):
+    def _miller_rabin_primality_test(self, prime_candidate: int, rounds: int=50):
         """
         Määrittää Mille-Rabin-algoritmin mukaan onko tietty luku todennäköisesti alkuluku.
         Testikierroksia voidaan suorittaa useampia.
 
         Args:
             prime_candidate (int): Testattavaksi valittu luku
-            rounds (int, optional): Testikierrosten lukumäärä, oletusarvo 5
+            rounds (int, optional): Testikierrosten lukumäärä, oletusarvo 50
 
         Returns:
             True, jos n on todennäköisesti alkuluku
@@ -175,38 +175,38 @@ class Key:
         gcd, x_value, y_value = self._get_greatest_common_divisor(b_value % a_value, a_value)
         return gcd, y_value - (b_value // a_value) * x_value, x_value
 
-    def _generate_keys(self, e_value: int=65537):
+    def _generate_keys(self, pub_exp: int=65537):
         """
         Generoi RSA-avainparin. Palauttaa julkisen ja salaisen avaimen tarvittavat osat.
 
         Args:
-            e_value (int, optional): eksponentti e, oletusarvo 65537
+            pub_exp (int, optional): eksponentti e, oletusarvo 65537
 
         Returns:
-            Luvut d, e, n
-            Avainpari (d,n) on salainen avain
-            Avainpari (e,n) on julkinen avain
+            Luvut priv_exp, pub_exp, mod
+            Avainpari (priv_exp,mod) on salainen avain
+            Avainpari (pub_exp,mod) on julkinen avain
         """
         p_prime, q_prime = self._generate_primes()
         while p_prime == q_prime:
             p_prime, q_prime = self._generate_primes()
-        n_value = p_prime * q_prime
-        phi_n = (p_prime - 1) * (q_prime - 1)
-        gcd, x_value, _ = self._get_greatest_common_divisor(e_value, phi_n)
+        mod = p_prime * q_prime
+        phi_mod = (p_prime - 1) * (q_prime - 1)
+        gcd, x_value, _ = self._get_greatest_common_divisor(pub_exp, phi_mod)
         if gcd != 1:
             return None
-        d_value = x_value
-        return d_value, e_value, n_value
+        priv_exp = x_value if x_value > 0 else x_value + phi_mod
+        return priv_exp, pub_exp, mod
 
     def get_new_keys(self):
         """
         Palauttaa uuden salausavainparin.
 
         Returns:
-            Julkisen avaimen muodossa (e, N)
-            Yksityisen avaimen muodossa (d, N)
+            Julkisen avaimen muodossa "pub_exp, mod"
+            Yksityisen avaimen muodossa (priv_exp, mod)
         """
-        d_value, e_value, n_value = self._generate_keys()
-        pub_key = (e_value, n_value)
-        priv_key = (d_value, n_value)
+        priv_exp, pub_exp, mod = self._generate_keys()
+        pub_key = f"{pub_exp},{mod}"
+        priv_key = (priv_exp,mod)
         return pub_key, priv_key
