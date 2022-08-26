@@ -26,3 +26,4 @@ Ylläolevassa kuvassa on havainnoillistettu RSA-salauksen toimintaa. Tässä ohj
 - [Viikko 3](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti3.md)
 - [Viikko 4](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti4.md)
 - [Viikko 5](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti5.md)
+- [Viikko 6](https://github.com/ellisrnm/hy-tiralabra-2022/blob/main/dokumentaatio/vkoraportti6.md)
